@@ -1,4 +1,6 @@
 #include <iostream>
+#include <random>
+#include <time.h>
 
 using namespace std;
 
@@ -7,17 +9,20 @@ int main()
     int number;
     cout << "GUESSING GAME\nGame rules :\nYou have only three chances to guess the number , otherwise you will lose.\nGuess the number (1-10):- ";
     cin >> number;
-    int secretnumber = 5;
-    int tries = 0;
-    while (number != secretnumber && tries < 2)
+    
+    srand(time(0));
+    int secretNumber = rand() % 10;
+
+    int tries = 2;
+    while (number != secretNumber && tries > 0)
     {
-        cout << "You have guessed the wrong one. Try again:- ";
+        cout << "You have guessed the wrong one ("<< tries <<" tries left).Try again:- ";
         cin >> number;
-        tries++;
+        tries--;
     }
-    if (number == secretnumber)
+    if (number == secretNumber)
     {
-        cout << "You have guessed the correct number!\n";
+        cout << "You have guessed the correct number! You won.\n";
     } else {
         cout << "You lose.Game Over ***(0 tries left)\n";
     }
